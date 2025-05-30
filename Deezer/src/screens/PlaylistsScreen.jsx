@@ -34,7 +34,7 @@ const PlaylistsScreen = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>
+    <>
       <h2>Mis Playlists</h2>
       {playlists.length === 0 ? (
         <p>No hay playlists disponibles</p>
@@ -47,7 +47,7 @@ const PlaylistsScreen = () => {
           />
         ))
       )}
-    </div>
+    </>
   );
 };
 

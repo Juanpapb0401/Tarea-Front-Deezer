@@ -31,6 +31,17 @@ const PlaylistTracksScreen = () => {
     navigate(`/playlist/${playlistId}/search`);
   };
 
+  const handleRemoveTrack = (trackId) => {
+    playlistService.removeTrackFromPlaylist(playlistId, trackId)
+      .then(() => {
+        setTracks(tracks.filter(track => track.id !== trackId));
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        setError('Error al eliminar la canción');
+      });
+  };
+
 
   if (loading) return <div>Cargando...</div>;
   if (error) return <div>{error}</div>;
@@ -49,6 +60,7 @@ const PlaylistTracksScreen = () => {
               <h3>{track.title}</h3>
               <p>Artista: {track.artistName}</p>
               <p>Álbum: {track.albumTitle}</p>
+              <button onClick={() => handleRemoveTrack(track.id)}>Eliminar</button>
             </div>
           ))
         )}

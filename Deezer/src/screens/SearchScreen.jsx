@@ -4,11 +4,17 @@ import deezerService from '../services/deezerService';
 import playlistService from '../services/playlistService';
 
 const SearchScreen = () => {
+
   const { playlistId } = useParams();
+
   const navigate = useNavigate();
+
   const [searchQuery, setSearchQuery] = useState('');
+
   const [searchResults, setSearchResults] = useState([]);
+
   const [loading, setLoading] = useState(false);
+  
   const [error, setError] = useState(null);
 
   const handleSearch = async (e) => {
@@ -43,7 +49,7 @@ const SearchScreen = () => {
       };
 
       await playlistService.addTrackToPlaylist(playlistId, trackData);
-      // Volver a la pantalla de tracks de la playlist
+
       navigate(`/playlist/${playlistId}`);
     } catch (error) {
       console.error('Error adding track:', error);
